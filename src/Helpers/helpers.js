@@ -14,3 +14,16 @@ export const getPhotos = (noOfPhotos) => {
       return false;
     });
 };
+
+export const getPhotosFromSearch = (noOfPhotos, searchText) => {
+  return axios
+    .get(
+      `https://api.unsplash.com//search/photos/?query=${searchText}&client_id=${ACCESS_KEY}&page=1&per_page=${noOfPhotos}`
+    )
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return false;
+    });
+};

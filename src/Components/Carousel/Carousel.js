@@ -12,7 +12,7 @@ const Carousel = ({ photos }) => {
           key={index}
           artistName={item?.user?.name}
           likes={item?.likes}
-          imageLink={item?.urls?.regular}
+          imageLink={item?.urls?.thumb}
           profileImage={item?.user?.profile_image?.medium}
           downloadLink={item?.links?.download}
         />

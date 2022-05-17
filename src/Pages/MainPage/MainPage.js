@@ -4,7 +4,7 @@ import "./MainPage.css";
 
 import { FiShuffle } from "react-icons/fi";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
-import { getPhotos } from "../../Helpers/helpers";
+import { getPhotos, getPhotosFromSearch } from "../../Helpers/helpers";
 import Carousel from "../../Components/Carousel/Carousel";
 
 const getRandomNumber = (min, max) =>
@@ -12,9 +12,11 @@ const getRandomNumber = (min, max) =>
 
 const MainPage = () => {
   const [photos, setPhotos] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   const getPhotosFromUnsplash = async () => {
     const noOfPhotos = getRandomNumber(10, 20);
+    setPhotos([]);
     const success = await getPhotos(noOfPhotos);
     success && setPhotos(success.data);
     console.log(photos);
@@ -36,6 +38,15 @@ const MainPage = () => {
       .scrollBy({ left: -400, behavior: "smooth" });
   };
 
+  const search = async () => {
+    console.log(searchText);
+    const noOfPhotos = getRandomNumber(10, 20);
+    setPhotos([]);
+    const success = await getPhotosFromSearch(noOfPhotos, searchText);
+    success && setPhotos(success?.data?.results);
+    setSearchText("");
+  };
+
   return (
     <div className="mainpage">
       <div className="mainpage__top">
@@ -44,6 +55,15 @@ const MainPage = () => {
           <span>Shuffle</span>
           <FiShuffle style={{ fontWeight: "700" }} />
         </button>
+      </div>
+      <div className="mainpage__search">
+        <input
+          type="text"
+          placeholder="Search Image"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+        <button onClick={search}>Search</button>
       </div>
       <div className="mainpage__carousel">
         <Carousel photos={photos} />

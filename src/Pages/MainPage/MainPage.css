@@ -58,6 +58,38 @@
   cursor: pointer;
 }
 
+.mainpage__search {
+  width: 90%;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mainpage__search input {
+  padding: 0.8rem;
+  width: 30%;
+  font-size: 1rem;
+  height: 3rem;
+}
+
+.mainpage__search button {
+  border: none;
+  background-color: #166d88;
+  color: white;
+  height: 3rem;
+  font-size: 1rem;
+  padding: 0 1rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+  .mainpage__search input {
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .mainpage__top {
     width: 100%;
@@ -68,5 +100,9 @@
 
   .mainpage__top button {
     font-size: 1rem;
+  }
+
+  .mainpage__search {
+    flex-direction: column;
   }
 }
